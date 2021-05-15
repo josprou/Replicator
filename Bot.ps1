@@ -51,7 +51,7 @@ while($condition){
             $command
             if($command[0] -eq "bar"){
                 loader -path $path -file bar
-                bar
+                #bar
             }
             if($command[0] -eq "load"){
                 if($commandlist -notcontains $command[1]){
