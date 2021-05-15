@@ -8,7 +8,7 @@ function loader{    # aqui empieza la funcion loader
     $ruta=$path;$ruta+=$file;$ruta+=".psm1" # monta la ruta completa
     $ruta
     (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex # carga las funciones externas en el ámbito del script
-    #. $file
+    . $file
 }
 
 $condition = $true
@@ -51,7 +51,7 @@ while($condition){
             $command
             if($command[0] -eq "bar"){
                 loader -path $path -file bar
-                bar
+                #bar
             }
             if($command[0] -eq "load"){
                 if($commandlist -notcontains $command[1]){
