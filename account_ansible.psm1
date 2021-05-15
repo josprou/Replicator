@@ -1,5 +1,5 @@
 #########################################
-## Confiuración del Bot
+## ConfiuraciÃ³n del Bot
 #########################################
 function New-MyTelegramConfiguration{
     $RegKey = "HKCU:\Software\MyTelegram"
@@ -9,14 +9,14 @@ function New-MyTelegramConfiguration{
     New-ItemProperty $RegKey -Name 'LastUpdateID' -Value 0 -Force | Out-Null
 }
 
-# Obtiene los últimos Telegrams
+# Obtiene los Ãºltimos Telegrams
 function Get-TelegramTimeLine{
     param([int]$MaxinumMessages)
 
     $RegKey = "HKCU:\Software\MyTelegram"
     $botkey = (Get-ItemProperty -Path $RegKey).BotKey
     $lastUpdate = (Get-ItemProperty -Path $RegKey).LastUpdateID
-    $telegrams = (Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates?offset=$lastUpdate").content
+    $telegrams = (Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates?offset=$lastUpdate" -UseBasicParsing).content
     $telegrams = ConvertFrom-Json $telegrams 
     [PSObject[]]$msgs = $null;$count=0
 
@@ -37,7 +37,7 @@ function Send-Results{
 
      $RegKey = "HKCU:\Software\MyTelegram"
      $BotKey = (Get-ItemProperty -Path $RegKey).botkey
-     Invoke-Webrequest -uri "https://api.telegram.org/bot$BotKey/sendMessage?chat_id=$chat_id&text=$texto" -Method post | Out-Null
+     Invoke-Webrequest -uri "https://api.telegram.org/bot$BotKey/sendMessage?chat_id=$chat_id&text=$texto" -Method post -UseBasicParsing| Out-Null
 }
 
 # Envia imagen al chat
@@ -67,7 +67,7 @@ function Send-Photo{
     $results = Invoke-RestMethod @invokeRestMethodSplat
 }
 
-# Envia documento al chat (máximo 50 MB)
+# Envia documento al chat (mÃ¡ximo 50 MB)
 function Send-Document{
     param([String]$file_path)
 
@@ -94,13 +94,13 @@ function Send-Document{
     $results = Invoke-RestMethod @invokeRestMethodSplat
 }
 
-# Obtiene el último Telegram leido
+# Obtiene el Ãºltimo Telegram leido
 function Get-LastUpdateID{
     $RegKey = "HKCU:\Software\MyTelegram"
     return (Get-ItemProperty -Path $RegKey).LastUpdateID
 }
 
-# Modifica el último Telegram leído
+# Modifica el Ãºltimo Telegram leÃ­do
 function Update-Time{
     param([string]$LastUpdateID)
     $LastUpdateID
