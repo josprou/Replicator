@@ -1,1 +1,1 @@
-function bar { $global:execute = "JoseDddolBot v0.0.1" }
+function bar { $global:execute = "Ansible v0.0.1" }
