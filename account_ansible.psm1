@@ -46,14 +46,12 @@ function Send-Photo{
 
     $RegKey = "HKCU:\Software\MyTelegram"
     $BotKey = (Get-ItemProperty -Path $RegKey).Botkey
-    $chat_id = (Get-ItemProperty -Path $RegKey).ChatID
-
-    $file_object = Get-Item $File -ErrorAction Stop
-    
+    $chat_id = (Get-ItemProperty -Path $RegKey).ChatID   
     $uri = "https://api.telegram.org/bot$BotKey/sendPhoto"
+    
     $Form = @{
         chat_id              = $chat_id
-        photo                = $file_object
+        photo                = Get-Item -Path $File -ErrorAction Stop
         caption              = $Caption
         parse_mode           = $ParseMode
         disable_notification = $DisableNotification
