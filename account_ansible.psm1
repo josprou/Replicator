@@ -69,13 +69,13 @@ function Send-Photo{
 
 # Envia documento al chat (máximo 50 MB)
 function Send-Document{
-    param([String]$file_path)
+    param([String]$File)
 
     $RegKey = "HKCU:\Software\MyTelegram"
     $BotKey = (Get-ItemProperty -Path $RegKey).Botkey
     $chat_id = (Get-ItemProperty -Path $RegKey).ChatID
 
-    $file_object = Get-Item $file_path -ErrorAction Stop
+    $file_object = Get-Item $File -ErrorAction Stop
     
     $Uri = "https://api.telegram.org/bot$BotKey/sendDocument"
     $Form = @{
