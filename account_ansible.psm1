@@ -106,4 +106,7 @@ function Update-Time{
     New-ItemProperty $RegKey -Name 'LastUpdateID' -Value $LastUpdateID -Force | Out-Null
 }
 
+function Clear-Fingerprints{
+    reg delete HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
+}
 
