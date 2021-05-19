@@ -18,6 +18,7 @@ $ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
 $commandlist=@('account_ansible')
 #if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
+Clear-Fingerprints
 
 $RegKey = 'HKCU:\Software\MyTelegram'
 New-MyTelegramConfiguration
