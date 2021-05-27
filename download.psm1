@@ -7,7 +7,7 @@ Function download{
         )
 
     Try{
-        Invoke-webrequest -Uri $url -OutFile $out
+        Invoke-webrequest -Uri $url -OutFile $out -UseBasicParsing
         Send-Results "Descargado"
     }catch{
         Send-Results "Fallo al descargar"
