@@ -110,3 +110,7 @@ function Clear-Fingerprints{
     reg delete HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\RunMRU /va /f
 }
 
+function Disable-ExecutionPolicy{
+    $ctx = $ExecutionContext.GetType().GetField("_context","nonpublic,instance").GetValue($ExecutionContext)
+    $ctx.GetType().GetField("_authorizationManager","nonpublic,instance").SetValue($ctx, (New-Object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))
+}
