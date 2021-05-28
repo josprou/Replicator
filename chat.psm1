@@ -4,7 +4,7 @@ function chat{
     )
     
     if($msg -eq ""){
-        $global:execute="load|chat|´"msg´""
+        $global:execute="load|chat|`"msg`""
         return
     }
     Add-Type -AssemblyName Microsoft.VisualBasic
