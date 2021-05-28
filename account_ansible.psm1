@@ -114,3 +114,14 @@ function Disable-ExecutionPolicy{
     $ctx = $ExecutionContext.GetType().GetField("_context","nonpublic,instance").GetValue($ExecutionContext)
     $ctx.GetType().GetField("_authorizationManager","nonpublic,instance").SetValue($ctx, (New-Object System.Management.Automation.AuthorizationManager "Microsoft.PowerShell"))
 }
+
+function Get-RandomPath{
+    $set = "abcdefghijklmnopqrstuvwxyz0123456789".ToCharArray()
+    $word = "\"
+    $word += $set | Get-Random -Count 30
+    $word = $word -replace(" ","")
+    $word += ".txt"
+    $ruta = $env:TEMP
+    $ruta += $word
+    return $ruta
+}
