@@ -78,7 +78,7 @@ while($condition){
                 loader -path $path -file helper
                 helper
             }
-            if($command[0] -eq "commandlist"){
+            if($command[0] -eq "cmdls"){
                 $global:execute = $commandlist
             }
             $global:execute
