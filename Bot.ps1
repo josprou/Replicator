@@ -74,10 +74,6 @@ while($condition){
                     $comando | Invoke-Expression
                 }
             }
-            if($command[0] -eq "help"){
-                loader -path $path -file helper
-                helper
-            }
             if($command[0] -eq "cmdls"){
                 $global:execute = $commandlist
             }
