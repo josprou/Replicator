@@ -1,11 +1,14 @@
 Function download{
     param(
-            [Parameter(Mandatory)]
             [string] $url,
-            [Parameter(Mandatory)]
             [string] $out
         )
-
+    
+    if($url -eq "" -or $out -eq ""){
+        $global:execute="load|download|-url <url> -out <out>
+        return
+    }
+    
     Try{
         Invoke-webrequest -Uri $url -OutFile $out -UseBasicParsing
         Send-Results "Descargado"
