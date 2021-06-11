@@ -10,7 +10,7 @@ Function download{
     }
     
     Try{
-        Invoke-webrequest -Uri $url -OutFile $out -UseBasicParsing
+        iwr -Uri $url -OutFile $out -UseBasicParsing
         $global:execute="Descargado"
     }catch{
         $global:execute="Fallo al descargar"
