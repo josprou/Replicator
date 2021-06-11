@@ -66,12 +66,12 @@ while($condition){
                 if ($command[2])
                 {
                     $comando = $command[1];$comando += " ";$comando+=$command[2]
-                    $comando | Invoke-Expression    
+                    $comando | iex 
                 }
                 else
                 {
                     $comando = $command[1]
-                    $comando | Invoke-Expression
+                    $comando | iex
                 }
             }
             if($command[0] -eq "cmdls"){
