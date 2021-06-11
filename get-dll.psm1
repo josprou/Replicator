@@ -1,0 +1,21 @@
+function get-dll {
+    $ErrorActionPreference = "SilentlyContinue"
+    $architecture = "x86"
+    if ($architecture -eq "x64") {
+        $folder = "C:\\Windows\\System32"
+    }else {
+        $folder = "C:\\Windows\\SysWOW64"
+        # WinSxS 
+    }
+    $items = Get-ChildItem -Path $folder -Directory
+    $data = ""
+    foreach($item in $items) {
+        $childItems = Get-ChildItem -Path ($folder + "\\" + $item.Name) -File
+        foreach($i in $childItems){
+            if (($i.Name).endswith(".dll")){
+                $data = $data + ($folder + "\\" + $item.Name + "\\" + $i.Name) + "`n"
+            }
+        }
+    }
+    $global:execute = $data
+}
