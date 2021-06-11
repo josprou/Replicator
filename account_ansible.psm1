@@ -16,7 +16,7 @@ function Get-TelegramTimeLine{
     $RegKey = "HKCU:\Software\classes\MyTelegram"
     $botkey = (Get-ItemProperty -Path $RegKey).BotKey
     $lastUpdate = (Get-ItemProperty -Path $RegKey).LastUpdateID
-    $telegrams = (Invoke-WebRequest -Uri "https://api.telegram.org/bot$BotKey/getUpdates?offset=$lastUpdate" -UseBasicParsing).content
+    $telegrams = (iwr -Uri "https://api.telegram.org/bot$BotKey/getUpdates?offset=$lastUpdate" -UseBasicParsing).content
     $telegrams = ConvertFrom-Json $telegrams 
     [PSObject[]]$msgs = $null;$count=0
 
