@@ -125,3 +125,26 @@ function Get-RandomPath{
     $ruta += $word
     return $ruta
 }
+
+function New-Request{
+    param(
+        [string] $method="GET",
+        [Parameter(Mandatory)]
+        [string] $URL,
+        [string] $data
+    )
+    $wc = new-object system.net.WebClient
+    if ($proxy){
+        $prx = new-object System.Net.WebProxy
+        $prx.Address = $proxy
+        $wc.proxy = $prx
+    }
+
+    if ($method -eq "POST"){
+        $wc.UploadString($url, "POST", $data)
+    } else{
+        $webpage = $wc.DownloadData($url)
+        $data = [System.Text.Encoding]::ASCII.GetString($webpage)
+        return $data
+    }
+}
