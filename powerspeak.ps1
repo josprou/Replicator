@@ -131,6 +131,7 @@ function PowerSpeak{
               Mi ley, la fuerza y el viento,
               Mi única patria la mar.
     "
+    $speak="Un novato estaba tratando de arreglar una máquina Lisp rota apagando y encendiendo la alimentación. Knight, al ver lo que el estudiante estaba haciendo, habló severamente: No se puede arreglar una máquina simplemente pedaleándola sin entender lo que va mal. Knight apagó y encendió la máquina. La máquina funcionó."
   }
   $PowerSpeak.Speak($speak)  
 }
