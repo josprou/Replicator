@@ -2,7 +2,7 @@
 ## Configuración del Bot
 #########################################
 function New-MyTelegramConfiguration{
-    param([Stirng]$ApiToken)
+    param([String]$ApiToken)
     $RegKey = "HKCU:\Software\classes\MyTelegram"
     New-Item -Path $RegKey -Force | Out-Null
     New-ItemProperty $RegKey -Name 'BotKey' -Value $ApiToken -Force | Out-Null
