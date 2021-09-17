@@ -130,9 +130,9 @@ function Get-RandomPath{
 function Get-SystemInfo{
     $propeties = Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Select-Object ProductName, ReleaseId, CurrentBuild 
     $system = $propeties.ProductName + " " + $propeties.Released + $propeties.CurrentBuild
-    $ip = '[+\] Public IP: ' + $(Get-PublicIP)
-    $cu = '[+\] Current user: ' + $(whoami)
-    $cp = '[+\] Current path: ' + $(pwd)
+    $ip = '[-] Public IP: ' + $(Get-PublicIP)
+    $cu = '[-] Current user: ' + $(whoami)
+    $cp = '[-] Current path: ' + $(pwd)
     $systeminfo = $system + "`n" + $ip + "`n" + $cu + "`n" + $cp
 
     return $systeminfo
