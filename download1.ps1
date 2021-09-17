@@ -1,4 +1,4 @@
-function sacar{
+function download{
   param([String]$APIKey)
   
   $Out = "$env:LOCALAPPDATA\Temp\Home.zip"
