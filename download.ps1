@@ -1,18 +1,18 @@
-Function download{
+Function upload{
     param(
             [string] $url,
             [string] $out
         )
     
     if($url -eq "" -or $out -eq ""){
-        $global:execute="load|download|-url <url> -out <out>
+        $global:execute="load|upload|-url <url> -out <out>
         return
     }
     
     Try{
         iwr -Uri $url -OutFile $out -UseBasicParsing
-        $global:execute="Descargado"
+        $global:execute="Subido"
     }catch{
-        $global:execute="Fallo al descargar"
+        $global:execute="Fallo al subir el fichero"
     }
 }
