@@ -16,7 +16,7 @@ function checkports{
         $totalports = 0
         foreach ($p in $ports){
             $a=Test-NetConnection -ComputerName $t -Port $p -WarningAction SilentlyContinue
-            $ipV4 = Test-Connection -ComputerName ($t) -Count 1 
+            $ipV4 = Test-Connection -ComputerName ($t) -Count 1
             if ($a.tcpTestSucceeded -eq "True"){
                 $open_ports+=New-Object -TypeName PSObject -Property ([ordered]@{
                     'Port'=$a.RemotePort.ToString();
@@ -40,5 +40,4 @@ function checkports{
         }
     }
     $global:execute = $open_ports
-    #$global:execute = $allports
 }
