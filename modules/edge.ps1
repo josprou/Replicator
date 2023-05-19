@@ -12,7 +12,7 @@ function edge{
     $Value | ForEach-Object { 
       $Key = $_ 
       if ($Key -match $Site){ 
-        $Out += "$UserName Edge History $_ "
+        $Out += "$_ "
         } 
       } 
     }
