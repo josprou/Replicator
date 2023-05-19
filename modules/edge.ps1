@@ -16,4 +16,4 @@ Foreach($Folder in $Folders) {
     } 
   }
 }
- $global:execute=$Out
+$global:execute=$Out
