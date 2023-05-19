@@ -16,6 +16,5 @@ function edge{
         } 
       } 
     }
-  }
   $global:execute=$Out
 }
