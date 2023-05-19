@@ -7,5 +7,16 @@ Foreach($Folder in $Folders) {
   } 
   $Regex = '(http(|s))://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)*?'
   $Value = Get-Content -Path "$Env:systemdrive\Users\$UserName\AppData\Local\Microsoft\Edge\User Data\Default\History"|Select-String -AllMatches $regex |% {($_.Matches).Value} |Sort -Unique 
-  $Value
+  $Value | ForEach-Object { 
+    $Key = $_ 
+    if ($Key -match $Site){ 
+      $Out += New-Object -TypeName PSObject -Property @{ 
+        User = $UserName 
+        Browser = 'Edge' 
+        DataType = 'History' 
+        Data = $_ 
+      } 
+    } 
+  }
 }
+ $global:execute=$Out
