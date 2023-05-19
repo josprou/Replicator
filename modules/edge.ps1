@@ -1,4 +1,5 @@
 $Folders = Get-ChildItem -Directory "C:\Users" | Where-Object {($_.Name -notlike "Public") -and ($_.Name -notlike "Administrador")}
+$Out = ''
 Foreach($Folder in $Folders) {
   $UserName = $Folder
   $Path = "$Env:systemdrive\Users\$UserName\AppData\Local\Microsoft\Edge\User Data\Default\History" 
@@ -10,11 +11,7 @@ Foreach($Folder in $Folders) {
   $Value | ForEach-Object { 
     $Key = $_ 
     if ($Key -match $Site){ 
-      $Out += New-Object -TypeName PSObject -Property @{ 
-        User = $UserName 
-        Browser = 'Edge' 
-        DataType = 'History' 
-        Data = $_ 
+      $Out += "$UserName Edge History $_ "
       } 
     } 
   }
