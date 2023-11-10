@@ -39,5 +39,5 @@ function checkports{
             $info += "none ports open target "+$ipV4.IPV4Address.IPAddressToString+"`n"
         }
     }
-    $global:execute = $open_ports
+    return @{results=$open_ports;success=$true}
 }
