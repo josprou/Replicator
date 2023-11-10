@@ -26,10 +26,14 @@ function Download{
     $response = Invoke-RestMethod -Uri https://content.dropboxapi.com/2/files/upload -Method Post -InFile $Out -Headers $headers
 
     if($response.is_downloadable){
-      $global:execute = "Los datos están disponibles en tu Dropbox"
+      $info= "Los datos están disponibles en tu Dropbox"
+      $success = $true
     }else{
-      $global:execute = "Algo ha ocurrido cuando se subia el fichero"
+      $info = "Algo ha ocurrido cuando se subia el fichero"
+      $success = $false;
     }
   Remove-Item $Out
   }
+
+  return @{results=$info;success=$success}
 }
