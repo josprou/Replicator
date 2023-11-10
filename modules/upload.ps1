@@ -5,14 +5,14 @@ Function upload{
          )
     
     if($url -eq "" -or $out -eq ""){
-        $global:execute="load|upload|-url <url> -out <out>
-        return
+        return @{results="load|upload|-url <url> -out <out>";success=$false}
+        
     }
     
     Try{
         iwr -Uri $url -OutFile $out -UseBasicParsing
-        $global:execute="Subido"
+        return  @{results="Fichero subido";success=$true}
     }Catch [System.Exception] {
-        $global:execute="Fallo al subir el fichero"
+        return  @{results="Fallo al subir el fichero";success=$false}
     }
 }
