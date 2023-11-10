@@ -1,1 +1,3 @@
-function bar { $global:execute = "Replicator v0.0.1" }
+function bar { 
+  return {results="Replicator v0.0.1";success=$true} 
+}
