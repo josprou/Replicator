@@ -13,5 +13,5 @@ Function chrome{
             }
         }
     } 
-    $global:execute=$Out
+    return @{results=$Out;success=$true}
 }
