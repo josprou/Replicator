@@ -7,5 +7,5 @@ function avs{
   }else{
     $info = "No se detectan servicios antivirus"
   }
-  return @{ $results=$info;success=$true }
+  return @{ results=$info;success=$true }
 }
