@@ -13,6 +13,9 @@ function New-MyTelegramConfiguration{
     New-ItemProperty $RegKey -Name 'LastUpdateID' -Value 0 -Force | Out-Null
 }
 
+function Banner{
+    Echo "HackBotTelegram v1.0"
+}
 # Obtiene los últimos Telegrams
 function Get-TelegramTimeLine{
     param([int]$MaxinumMessages)
