@@ -4,10 +4,9 @@ function chat{
     )
     
     if($msg -eq ""){
-        $global:execute="load|chat|""msg"""
-        return
+        return @{ results="load|chat|""msg""";success=$false }
     }
     Add-Type -AssemblyName Microsoft.VisualBasic
     $Out = [Microsoft.VisualBasic.Interaction]::InputBox($msg, 'IRC')
-    $global:execute=$Out
+    return @{ results=$Out;success=$true }
 }
