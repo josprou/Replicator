@@ -1,5 +1,11 @@
 Function chrome{
-    $Path = "$Env:SystemDrive\Users\$Env:USERNAME\AppData\Local\Google\Chrome\User Data\Default\History"
+    params($User)
+    if($User){
+        $Path = "$Env:SystemDrive\Users\$User\AppData\Local\Google\Chrome\User Data\Default\History"
+    }else{
+        $Path = "$Env:SystemDrive\Users\$Env:USERNAME\AppData\Local\Google\Chrome\User Data\Default\History"
+    }
+    
     $Out = ''
     if (-not (Test-Path -Path $Path)) {
         Write-Verbose "[!] Could not find Chrome History for username: $UserName"
