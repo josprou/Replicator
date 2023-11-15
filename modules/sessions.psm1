@@ -1,4 +1,4 @@
 function sessions{
-    $sessions = $(query sessions)
+    $sessions = $(query session)
     return $sessions
 }
