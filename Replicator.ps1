@@ -106,7 +106,7 @@ while($condition){
             }
             $execute.results
             #$global:execute.Length
-            if($execute.results.length -gt 0){send-results -chat_id $chat_id -texto $execute.results}
+            if($execute.results.length -gt 0){ send-results -chat_id $chat_id -texto $execute.results }
             $condition = $command[0] -ne "quit!"         
         }     
     }    
