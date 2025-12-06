@@ -68,8 +68,8 @@ while($condition){
         }
 
         # Comprobación de identidad y privilegios
-        #                   Jose                           
-        if(($chat_id -eq "685749607")){
+        #                                              
+        if(($chat_id -eq "<TU-CHAT-IT>")){
             $result = $true        
         }else{
             $result = $false
